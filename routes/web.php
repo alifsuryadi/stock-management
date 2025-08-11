@@ -8,10 +8,10 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TransactionController;
 
-// Redirect root to admin login
+// Landing Page
 Route::get('/', function () {
-    return redirect()->route('admin.login');
-});
+    return view('welcome');
+})->name('home');
 
 // Admin routes
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -22,7 +22,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('login', [AuthController::class, 'login']);
     });
 
-    // Authenticated routes (sudah login) - GANTI admin.auth dengan auth:admin
+    // Authenticated routes (sudah login)
     Route::middleware('auth:admin')->group(function () {
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
         
@@ -39,4 +39,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('products', ProductController::class);
         Route::resource('transactions', TransactionController::class);
     });
+});
+
+// Handle 404 - harus di paling bawah
+Route::fallback(function () {
+    return view('errors.404');
 });

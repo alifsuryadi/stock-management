@@ -14,11 +14,13 @@ return Application::configure(basePath: dirname(__DIR__))
         // Daftarkan middleware admin.auth
         $middleware->alias([
             'admin.auth' => \App\Http\Middleware\AdminAuth::class,
+            'admin.authenticate' => \App\Http\Middleware\Authenticate::class,
         ]);
         
         // Atau daftarkan di group middleware
         $middleware->group('admin', [
             \App\Http\Middleware\AdminAuth::class,
+            \App\Http\Middleware\Authenticate::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
