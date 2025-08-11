@@ -1,7 +1,5 @@
 # 📦 Stock Management System
 
-![Stock Management System](https://via.placeholder.com/1200x600/667eea/ffffff?text=Stock+Management+System+-+Professional+Inventory+Solution)
-
 > **Sistem Manajemen Stok Modern** - Aplikasi web berbasis Laravel untuk mengelola inventori, transaksi, dan administrasi dengan antarmuka yang professional dan user-friendly.
 
 [![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
