@@ -1,7 +1,5 @@
 # 📦 Stock Management System
 
-![Stock Management System](https://via.placeholder.com/1200x600/667eea/ffffff?text=Stock+Management+System+-+Professional+Inventory+Solution)
-
 > **Sistem Manajemen Stok Modern** - Aplikasi web berbasis Laravel untuk mengelola inventori, transaksi, dan administrasi dengan antarmuka yang professional dan user-friendly.
 
 [![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
@@ -531,30 +529,6 @@ Jika menemukan bug, silakan buat issue dengan informasi:
 ## 📄 Lisensi
 
 Project ini menggunakan **MIT License**. Silakan lihat file [LICENSE](LICENSE) untuk detail lengkap.
-
-```
-MIT License
-
-Copyright (c) 2025 Stock Management System
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
 
 ---
 
