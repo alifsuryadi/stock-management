@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class Admin extends Authenticatable
 {
@@ -17,6 +18,7 @@ class Admin extends Authenticatable
         'birth_date',
         'gender',
         'password',
+        'slug',
     ];
 
     protected $hidden = [
@@ -37,5 +39,25 @@ class Admin extends Authenticatable
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($admin) {
+            $admin->slug = Str::slug($admin->first_name . '-' . $admin->last_name) . '-' . time();
+        });
+
+        static::updating(function ($admin) {
+            if ($admin->isDirty(['first_name', 'last_name'])) {
+                $admin->slug = Str::slug($admin->first_name . '-' . $admin->last_name) . '-' . time();
+            }
+        });
     }
 }

@@ -11,265 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/icon.svg') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 280px;
-            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            transform: translateX(-100%);
-        }
-
-        .sidebar.show {
-            transform: translateX(0);
-        }
-
-        .sidebar-header {
-            padding: 2rem 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
-        .sidebar-logo {
-            font-size: 2rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-title {
-            color: white;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .sidebar-subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.875rem;
-            margin: 0;
-        }
-
-        .sidebar-nav {
-            padding: 1rem 0;
-        }
-
-        .nav-item {
-            margin-bottom: 0.25rem;
-        }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: left;
-        }
-
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            transform: translateX(5px);
-        }
-
-        .nav-link.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 0 25px 25px 0;
-            margin-right: 1rem;
-        }
-
-        .nav-link i {
-            width: 20px;
-            margin-right: 1rem;
-            text-align: center;
-        }
-
-        .main-content {
-            margin-left: 0;
-            padding: 0;
-            transition: all 0.3s ease;
-            min-height: 100vh;
-        }
-
-        .topbar {
-            background: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .hamburger {
-            background: none;
-            border: none;
-            font-size: 1.25rem;
-            color: #4a5568;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger:hover {
-            background: #f7fafc;
-            color: #2d3748;
-        }
-
-        .content-area {
-            padding: 2rem;
-        }
-
-        .page-header {
-            margin-bottom: 2rem;
-        }
-
-        .page-title {
-            font-size: 1.875rem;
-            font-weight: 600;
-            color: #2d3748;
-            margin: 0;
-        }
-
-        .card {
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .card-header {
-            background: white;
-            border-bottom: 1px solid #e2e8f0;
-            border-radius: 16px 16px 0 0 !important;
-            padding: 1.5rem;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #2d3748;
-            margin: 0;
-        }
-
-        .btn {
-            border-radius: 10px;
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .alert {
-            border-radius: 12px;
-            border: none;
-            padding: 1rem 1.5rem;
-        }
-
-        .alert-success {
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-            color: white;
-        }
-
-        .alert-danger {
-            background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
-            color: white;
-        }
-
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .admin-profile {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1rem;
-            margin: 1rem 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .admin-name {
-            color: white;
-            font-weight: 500;
-            margin: 0;
-            font-size: 0.875rem;
-        }
-
-        .admin-email {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.75rem;
-            margin: 0;
-        }
-
-        @media (min-width: 992px) {
-            .sidebar {
-                transform: translateX(0);
-                position: relative;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .hamburger {
-                display: none;
-            }
-
-            .sidebar-overlay {
-                display: none;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .content-area {
-                padding: 1rem;
-            }
-
-            .topbar {
-                padding: 1rem;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -280,15 +24,12 @@
         <!-- Sidebar -->
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-header">
+                <button class="sidebar-close-btn d-lg-none" id="sidebarCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
                 <i class="fas fa-boxes sidebar-logo"></i>
                 <h4 class="sidebar-title">Stock Manager</h4>
                 <p class="sidebar-subtitle">Inventory System</p>
-            </div>
-
-            <!-- Admin Profile -->
-            <div class="admin-profile">
-                <p class="admin-name">{{ Auth::guard('admin')->user()->full_name }}</p>
-                <p class="admin-email">{{ Auth::guard('admin')->user()->email }}</p>
             </div>
 
             <ul class="sidebar-nav list-unstyled">
@@ -328,17 +69,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.profile') ? 'active' : '' }}"
-                        href="{{ route('admin.profile') }}">
-                        <i class="fas fa-user"></i>
-                        <span>Profil</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <form action="{{ route('admin.logout') }}" method="POST" class="w-100">
                         @csrf
-                        <button type="submit" class="nav-link w-100 border-0"
-                            onclick="return confirm('Yakin ingin logout?')">
+                        <button type="button" class="nav-link w-100 border-0" onclick="showLogoutModal()">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Logout</span>
                         </button>
@@ -359,7 +92,26 @@
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <span class="text-muted me-3">Welcome back, {{ Auth::guard('admin')->user()->first_name }}!</span>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <button class="profile-btn dropdown-toggle border-0" type="button">
+                            <i class="fas fa-user-circle me-2"></i>
+                            Welcome back, {{ Auth::guard('admin')->user()->first_name }}!
+                        </button>
+                        <div class="profile-dropdown-menu">
+                            <div class="profile-info">
+                                <p class="profile-name">{{ Auth::guard('admin')->user()->full_name }}</p>
+                                <p class="profile-email">{{ Auth::guard('admin')->user()->email }}</p>
+                            </div>
+                            <a href="{{ route('admin.profile') }}" class="profile-menu-item">
+                                <i class="fas fa-user me-2"></i>
+                                Profil Saya
+                            </a>
+                            <a href="#" class="profile-menu-item" onclick="showLogoutModal()">
+                                <i class="fas fa-sign-out-alt me-2"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -401,10 +153,41 @@
                     <p class="mb-0" id="deleteMessage">Apakah Anda yakin ingin menghapus item ini?</p>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Batal
+                    </button>
                     <button type="button" class="btn btn-danger" id="confirmDelete">
                         <i class="fas fa-trash me-2"></i>Hapus
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">
+                        <i class="fas fa-sign-out-alt text-primary me-2"></i>
+                        Konfirmasi Logout
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Apakah Anda yakin ingin keluar dari dashboard?</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Batal
+                    </button>
+                    <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -418,6 +201,7 @@
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const sidebar = document.getElementById('sidebar');
         const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const sidebarCloseBtn = document.getElementById('sidebarCloseBtn');
 
         function toggleSidebar() {
             sidebar.classList.toggle('show');
@@ -426,6 +210,20 @@
 
         hamburgerBtn?.addEventListener('click', toggleSidebar);
         sidebarOverlay?.addEventListener('click', toggleSidebar);
+        sidebarCloseBtn?.addEventListener('click', toggleSidebar);
+
+        // Profile Dropdown
+        const profileDropdown = document.getElementById('profileDropdown');
+        const profileBtn = profileDropdown.querySelector('.profile-btn');
+
+        profileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function() {
+            profileDropdown.classList.remove('show');
+        });
 
         // Delete Modal
         let deleteForm = null;
@@ -441,6 +239,11 @@
                 deleteForm.submit();
             }
         });
+
+        // Logout Modal
+        function showLogoutModal() {
+            new bootstrap.Modal(document.getElementById('logoutModal')).show();
+        }
 
         // Auto-hide alerts
         setTimeout(function() {
