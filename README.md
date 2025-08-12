@@ -536,9 +536,9 @@ Project ini menggunakan **MIT License**. Silakan lihat file [LICENSE](LICENSE) u
 
 ### **Developer**
 
--   **Email**: developer@example.com
--   **GitHub**: [@username](https://github.com/alifsuryadi)
--   **LinkedIn**: [Your LinkedIn](https://linkedin.com/in/alifsuryadi)
+-   **Email**: alifsuryadi037@gmail.com
+-   **GitHub**: [@alifsuryadi](https://github.com/alifsuryadi)
+-   **LinkedIn**: [Alif Suryadi](https://linkedin.com/in/alifsuryadi)
 
 ### **Support**
 
